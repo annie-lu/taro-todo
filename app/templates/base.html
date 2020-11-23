@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Taro Todo 🍠</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+    <div class="topnav">
+        <div class="navbar-header">
+
+            <a class="navbar-brand topnav" href="{{ url_for('list') }}">Taro Todo</a>
+        </div>
+            <ul class="nav navbar-nav navbar-right">
+                {% if current_user.is_authenticated %}
+                <li><a href="{{ url_for('auth.logout') }}">Logout</a></li>
+                <li><a><i class="fa fa-user"></i>{{ current_user.username }}&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Login&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
+                {% endif %}
+            </ul>
+        </div>
+</nav>
+<div class="wrapper">
+    {% block body %}
+    {% endblock %}
+</div>
+
+</body>
+</html>

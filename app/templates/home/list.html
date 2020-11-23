@@ -1,0 +1,52 @@
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}List{% endblock %}
+{% block body %}
+<div class="content-section">
+
+       <div class='todo'>
+                <h1> Todo List</h1>
+
+
+
+                <form action="/task" method="post">
+                    <input type="text" class="form-control" style="width:70%; display:inline; font-weight:500" name="content">
+                    <input type="submit" class="btn btn-default" value="Add task">
+                </form>
+</br>
+                    {% for task in tasks %}
+    {% if task.done %}
+
+           <label class="container">
+                <strike>{{ task.content }}</strike>&emsp;  <a href="/delete/{{ task.id }}"> Delete</a>
+  <input type="checkbox" id=task.id onclick="window.location.href='/done/{{ task.id }}'" checked="checked">
+  <span class="checkmark"></span>
+</label>
+
+    {% else %}
+      <label class="container">
+                {{ task.content }}&emsp; <a href="/delete/{{ task.id }}"> Delete</a>
+  <input type="checkbox" id=task.id onclick="window.location.href='/done/{{ task.id }}'" >
+  <span class="checkmark"></span>
+</label>
+    {% endif %}
+
+                        </br>
+                    {% endfor %}
+    <br>
+            </div>
+<div class="pet">
+       {% if pet.type == 'Bunny'%}
+    <img src="static/img/bun.png" style="width: 100%; border-radius: 3%">
+    {% else %}
+    <img src="static/img/cheeto.png" style="width: 100%; border-radius: 3%">
+    {% endif %}
+    <h3>{{pet.type}}</h3>
+    Health: {{pet.health}}</br>
+    Points: {{pet.points}}
+</div>
+
+</div>
+
+{% endblock %}

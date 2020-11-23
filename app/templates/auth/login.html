@@ -1,0 +1,20 @@
+<!-- app/templates/auth/login.html -->
+
+{% import "bootstrap/utils.html" as utils %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends "base.html" %}
+{% block title %}Login{% endblock %}
+{% block body %}
+<div class="content-section">
+  <br/>
+  {{ utils.flashed_messages() }}
+  <br/>
+  <div class="center">
+    <h1>Taro Todo Login</h1>
+    <br/>
+    {{ wtf.quick_form(form) }}
+    <br/>
+    New to Taro Todo? <a href="{{ url_for('auth.register') }}">Sign up here!</a>
+  </div>
+</div>
+{% endblock %}
